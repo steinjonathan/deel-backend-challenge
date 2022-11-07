@@ -1,4 +1,4 @@
-const { sequelize } = require('../model')
+const { sequelize } = require('./model')
 const { Contract } = sequelize.models
 
 const ContractService = require('../services/contract')
