@@ -37,7 +37,7 @@ The exercise requires [Node.js](https://nodejs.org/en/) to be installed. We reco
 
 1. In the repo root directory, run `npm install` to gather all dependencies.
 
-    Note: Make sure have NodeJS v13.
+    Note: Make sure have NodeJS v12.
 
   
 
