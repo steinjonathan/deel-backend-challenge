@@ -1,10 +1,10 @@
 class ContractService {
-  constructor ({ contractsDataRepository }) {
-    this.contractsDataRepository = contractsDataRepository
+  constructor ({ contractsData }) {
+    this.contractsData = contractsData
   }
 
-  async getById (id) {
-    return this.contractsDataRepository.getById(id)
+  async getByIdAndProfile (id, profileId) {
+    return this.contractsData.getByIdAndProfile(id, profileId)
   }
 }
 

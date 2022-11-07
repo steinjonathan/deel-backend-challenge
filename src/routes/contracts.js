@@ -7,7 +7,7 @@ module.exports = ({ app, contractService }) => {
      */
   app.get('/contracts/:id', getProfile, async (req, res) => {
     const { id } = req.params
-    const contract = await contractService.getById(id)
+    const contract = await contractService.getByIdAndProfile(id, req.profile.id)
     if (!contract) return res.status(404).end()
     res.json(contract)
   })

@@ -9,7 +9,7 @@ module.exports = (app) => (
   require('../routes/contracts')({
     app,
     contractService: new ContractService({
-      contractsDataRepository: new ContractData(Contract)
+      contractsData: new ContractData(Contract)
     })
   })
 )
