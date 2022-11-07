@@ -37,6 +37,8 @@ The exercise requires [Node.js](https://nodejs.org/en/) to be installed. We reco
 
 1. In the repo root directory, run `npm install` to gather all dependencies.
 
+    Note: Make sure have NodeJS v13.
+
   
 
 1. Next, `npm run seed` will seed the local SQLite database. **Warning: This will drop the database if it exists**. The database lives in a local file `database.sqlite3`.
