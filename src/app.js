@@ -1,11 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const routes = require('./routes')
+
+const setupApp = require('./infra')
 
 const app = express()
 
 app.use(bodyParser.json())
 
-routes(app)
+setupApp(app)
 
 module.exports = app
