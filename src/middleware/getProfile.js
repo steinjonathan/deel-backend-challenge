@@ -1,4 +1,4 @@
-const { sequelize } = require('../model')
+const { sequelize } = require('../infra/model')
 
 const { Profile } = sequelize.models
 
