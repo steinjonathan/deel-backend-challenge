@@ -1,4 +1,4 @@
-// const { sequelize } = require('../model')
+const { Op } = require('sequelize')
 
 // const { Contract } = sequelize.models
 
@@ -9,8 +9,16 @@ class ContractData {
     this.sequelizeContractModel = sequelizeContractModel
   }
 
-  async getById (id) {
-    return this.sequelizeContractModel.findOne({ where: { id } })
+  async getByIdAndProfile (id, profileId) {
+    return this.sequelizeContractModel.findOne({
+      where: {
+        id,
+        [Op.or]: [
+          { ClientId: profileId },
+          { ContractorId: profileId }
+        ]
+      }
+    })
   }
 }
 

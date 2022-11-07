@@ -3,22 +3,22 @@ const ContractService = require('../../../src/services/contract')
 jest.mock('../../../src/data/contracts')
 
 describe('Service Contracts', () => {
-  let getByIdMock = null
+  let getByIdAndProfileMock = null
   let service = null
 
   beforeEach(() => {
-    getByIdMock = jest.fn()
+    getByIdAndProfileMock = jest.fn()
     service = new ContractService({
-      contractsDataRepository: {
-        getById: getByIdMock
+      contractsData: {
+        getByIdAndProfile: getByIdAndProfileMock
       }
     })
   })
 
   test('Get by id should return item', async () => {
-    getByIdMock.mockResolvedValue({ id: 1 })
-    const result = await service.getById(1)
+    getByIdAndProfileMock.mockResolvedValue({ id: 1 })
+    const result = await service.getByIdAndProfile(1, 1)
     expect(result).toStrictEqual({ id: 1 })
-    expect(getByIdMock).toBeCalledWith(1)
+    expect(getByIdAndProfileMock).toBeCalledWith(1, 1)
   })
 })
