@@ -15,7 +15,7 @@ async function seed () {
       firstName: 'Harry',
       lastName: 'Potter',
       profession: 'Wizard',
-      balance: 1150,
+      balance: 250,
       type: 'client'
     }),
     Profile.create({

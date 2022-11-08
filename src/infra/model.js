@@ -84,6 +84,7 @@ Job.belongsTo(Contract)
 
 module.exports = {
   sequelize,
+  Transaction: Sequelize.Transaction,
   Profile,
   Contract,
   Job

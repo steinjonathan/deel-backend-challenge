@@ -37,4 +37,25 @@ describe('Service Contracts', () => {
       expect(getActiveContractsUnpaidJobsByProfileMock).toBeCalledWith(1, 5, 35)
     }
   )
+
+  test(
+    'When contractor pay for a job should get error',
+    async () => {
+
+    }
+  )
+
+  test(
+    'When client pay for a job without enough balance should get error',
+    async () => {
+
+    }
+  )
+
+  test(
+    'When client pay for a job with enough balance should move the amount from client to contractor balance',
+    async () => {
+
+    }
+  )
 })
