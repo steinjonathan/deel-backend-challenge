@@ -11,4 +11,10 @@ module.exports = ({ app, contractService }) => {
     if (!contract) return res.status(404).end()
     res.json(contract)
   })
+
+  app.get('/contracts', getProfile, async (req, res) => {
+    const pagination = req.query
+    const contracts = await contractService.getNotTerminatedContractsByProfile(req.profile.id, pagination)
+    res.json(contracts)
+  })
 }

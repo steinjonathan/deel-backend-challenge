@@ -20,6 +20,22 @@ class ContractData {
       }
     })
   }
+
+  async getNotTerminatedContractsByProfile (profileId, limit, offset) {
+    return this.sequelizeContractModel.findAll({
+      where: {
+        [Op.or]: [
+          { ClientId: profileId },
+          { ContractorId: profileId }
+        ],
+        status: {
+          [Op.or]: ['new', 'in_progress']
+        }
+      },
+      limit,
+      offset
+    })
+  }
 }
 
 module.exports = ContractData
