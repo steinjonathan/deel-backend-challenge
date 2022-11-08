@@ -61,7 +61,7 @@ class JobData {
     })
   }
 
-  async getSumOfPaidJobsPerContractor (startDate, endDate) {
+  async getSumOfPaidJobsPerContractorProfession (startDate, endDate) {
     return this.sequelizeJobModel.findAll({
       attributes: [
         [sequelize.fn('sum', sequelize.col('price')), 'total']
@@ -86,6 +86,35 @@ class JobData {
       },
       group: 'Contract.Contractor.profession',
       order: [['total', 'DESC']]
+    })
+  }
+
+  async getSumOfPaidJobsPerClient (startDate, endDate, limit) {
+    return this.sequelizeJobModel.findAll({
+      attributes: [
+        [sequelize.fn('sum', sequelize.col('price')), 'total']
+      ],
+      where: {
+        paid: true,
+        paymentDate: {
+          [sequelize.Op.between]: [startDate, endDate]
+        }
+      },
+      include: {
+        model: this.sequelizeContractModel,
+        as: 'Contract',
+        attributes: ['ClientId'],
+        include: [{
+          model: this.sequelizeProfileModel,
+          as: 'Client',
+          attributes: [
+            'id', 'firstName', 'lastName'
+          ]
+        }]
+      },
+      group: 'Contract.Client.id',
+      order: [['total', 'DESC']],
+      limit
     })
   }
 }

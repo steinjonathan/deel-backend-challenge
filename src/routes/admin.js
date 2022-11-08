@@ -9,4 +9,15 @@ module.exports = ({ app, adminService }) => {
       res.status(500).end()
     }
   })
+
+  app.get('/admin/best-clients', async (req, res) => {
+    try {
+      const { start, end, limit } = req.query
+      const result = await adminService.getClientMostPaid(start, end, limit)
+      res.json(result)
+    } catch (err) {
+      console.log(err)
+      res.status(500).end()
+    }
+  })
 }
