@@ -1,9 +1,5 @@
 const { Op } = require('sequelize')
 
-// const { Contract } = sequelize.models
-
-// exports.findOne = (filter) => Contract.findOne(filter)
-
 class ContractData {
   constructor (sequelizeContractModel) {
     this.sequelizeContractModel = sequelizeContractModel

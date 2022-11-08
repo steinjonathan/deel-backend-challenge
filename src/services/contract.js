@@ -18,7 +18,7 @@ class ContractService {
         offset = pagination.offset
       }
     }
-    const contracts = this.contractsData.getNotTerminatedContractsByProfile(
+    const contracts = await this.contractsData.getNotTerminatedContractsByProfile(
       profileId,
       limit,
       offset
