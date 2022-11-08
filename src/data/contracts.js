@@ -29,7 +29,7 @@ class ContractData {
           { ContractorId: profileId }
         ],
         status: {
-          [Op.or]: ['new', 'in_progress']
+          [Op.ne]: 'terminated'
         }
       },
       limit,
