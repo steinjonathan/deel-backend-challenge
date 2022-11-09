@@ -2,7 +2,7 @@ const JobService = require('../../../src/services/job')
 
 jest.mock('../../../src/data/contracts')
 
-describe('Service Contracts', () => {
+describe('Service Jobs', () => {
   let jobGetActiveContractsUnpaidJobsByProfileMock = null
   let jobGetByIdByClientIdMock = null
   let jobPayJobMock = null
@@ -12,7 +12,6 @@ describe('Service Contracts', () => {
   let transaction = null
   let rollbackMock = null
   let commitMock = null
-  // let profileGetBy
   let service = null
 
   beforeEach(() => {
@@ -66,36 +65,31 @@ describe('Service Contracts', () => {
     }
   )
 
-  test(
-    'When contractor pay for a job should get error', async () => {
-      await expect(service.payJob({ type: 'contractor' }, 123)).rejects.toThrowError('Only Clients can pay jobs')
-      expect(rollbackMock).not.toHaveBeenCalled()
-    }
+  test('When contractor pay for a job should get error', async () => {
+    await expect(service.payJob({ type: 'contractor' }, 123)).rejects.toThrowError('Only Clients can pay jobs')
+    expect(rollbackMock).not.toHaveBeenCalled()
+  }
   )
 
-  test(
-    'When client pay for a job that does not exists should get error', async () => {
-      await expect(service.payJob({ type: 'client' }, 123)).rejects.toThrowError('Job not found')
-      expect(rollbackMock).toHaveBeenCalled()
-    }
+  test('When client pay for a job that does not exists should get error', async () => {
+    await expect(service.payJob({ type: 'client' }, 123)).rejects.toThrowError('Job not found')
+    expect(rollbackMock).toHaveBeenCalled()
+  }
   )
 
-  test(
-    'When client pay for a job already paid should get error', async () => {
-      jobGetByIdByClientIdMock.mockResolvedValue({ paid: true })
-      await expect(service.payJob({ type: 'client' }, 123)).rejects.toThrowError('Job already paid')
-      expect(rollbackMock).toHaveBeenCalled()
-    }
+  test('When client pay for a job already paid should get error', async () => {
+    jobGetByIdByClientIdMock.mockResolvedValue({ paid: true })
+    await expect(service.payJob({ type: 'client' }, 123)).rejects.toThrowError('Job already paid')
+    expect(rollbackMock).toHaveBeenCalled()
+  }
   )
 
-  test(
-    'When client pay for a job without enough balance should get error',
-    async () => {
-      jobGetByIdByClientIdMock.mockResolvedValue({ paid: false, price: 10 })
-      profileGetByIdMock.mockResolvedValue({ balance: 9 })
-      await expect(service.payJob({ type: 'client' }, 123)).rejects.toThrowError('Client does not have enough balance')
-      expect(rollbackMock).toHaveBeenCalled()
-    }
+  test('When client pay for a job without enough balance should get error', async () => {
+    jobGetByIdByClientIdMock.mockResolvedValue({ paid: false, price: 10 })
+    profileGetByIdMock.mockResolvedValue({ balance: 9 })
+    await expect(service.payJob({ type: 'client' }, 123)).rejects.toThrowError('Client does not have enough balance')
+    expect(rollbackMock).toHaveBeenCalled()
+  }
   )
 
   test(
