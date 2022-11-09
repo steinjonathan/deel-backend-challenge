@@ -49,7 +49,6 @@ class JobData {
   }
 
   async payJob (id, transaction) {
-    console.log('payJob', id)
     return this.sequelizeJobModel.update({
       paid: true,
       paymentDate: new Date()

@@ -61,12 +61,6 @@ class JobService {
       // If the execution reaches this line, no errors were thrown.
       // We commit the transaction.
       await transaction.commit()
-
-      const savedClient = await this.profilesData.getById(clientId)
-      const savedContractor = await this.profilesData.getById(jobContract.ContractorId)
-
-      console.log('client', savedClient)
-      console.log('contractor', savedContractor)
     } catch (err) {
       // If the execution reaches this line, an error was thrown.
       // We rollback the transaction.

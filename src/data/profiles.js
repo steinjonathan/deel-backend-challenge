@@ -13,7 +13,6 @@ class ProfileData {
   }
 
   async decreaseBalance (id, amount, transaction) {
-    console.log('decreaseBalance', id)
     return this.sequelizeProfileModel.decrement('balance', {
       by: amount,
       where: {
@@ -24,7 +23,6 @@ class ProfileData {
   }
 
   async increaseBalance (id, amount, transaction) {
-    console.log('increaseBalance', id)
     return this.sequelizeProfileModel.increment('balance', {
       by: amount,
       where: {
