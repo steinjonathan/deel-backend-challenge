@@ -34,8 +34,8 @@ class JobService {
 
     const transaction = await this.getRepeatableReadTransaction()
 
+    const clientId = profile.id
     try {
-      const clientId = profile.id
       const job = await this.jobsData.getByIdByClientId(jobId, clientId, transaction)
 
       if (!job) {
@@ -67,6 +67,8 @@ class JobService {
       await transaction.rollback()
       throw err
     }
+
+    return this.jobsData.getByIdByClientId(jobId, clientId)
   }
 }
 
