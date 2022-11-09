@@ -7,6 +7,7 @@ module.exports = ({ app, jobService }) => {
       const unpaidJobs = await jobService.getActiveContractsUnpaidJobsByProfile(req.profile.id, pagination)
       res.json(unpaidJobs)
     } catch (err) {
+      console.error(err)
       res.status(500).end()
     }
   })
@@ -19,7 +20,6 @@ module.exports = ({ app, jobService }) => {
       res.json(job)
     } catch (err) {
       // TODO: FIX ERROR TYPES CREATING SPECIFIC ERRORS FOR VALIDATIONS
-      console.log(err)
       switch (err.message) {
         case 'Only Clients can pay jobs':
         case 'Job already paid':
@@ -30,6 +30,7 @@ module.exports = ({ app, jobService }) => {
           res.status(404).send({ message: err.message })
           break
         default:
+          console.error(err)
           res.status(500).end()
           break
       }

@@ -8,6 +8,7 @@ module.exports = ({ app, contractService }) => {
       if (!contract) return res.status(404).end()
       res.json(contract)
     } catch (err) {
+      console.error(err)
       res.status(500).end()
     }
   })
@@ -18,6 +19,7 @@ module.exports = ({ app, contractService }) => {
       const contracts = await contractService.getNotTerminatedContractsByProfile(req.profile.id, pagination)
       res.json(contracts)
     } catch (err) {
+      console.error(err)
       res.status(500).end()
     }
   })

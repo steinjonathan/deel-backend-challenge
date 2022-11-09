@@ -5,7 +5,7 @@ module.exports = ({ app, adminService }) => {
       const result = await adminService.getMostPaidProfession(start, end)
       res.json(result)
     } catch (err) {
-      console.log(err)
+      console.error(err)
       res.status(500).end()
     }
   })
@@ -16,7 +16,7 @@ module.exports = ({ app, adminService }) => {
       const result = await adminService.getClientMostPaid(start, end, limit)
       res.json(result)
     } catch (err) {
-      console.log(err)
+      console.error(err)
       res.status(500).end()
     }
   })

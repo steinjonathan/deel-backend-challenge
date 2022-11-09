@@ -117,6 +117,26 @@ class JobData {
       limit
     })
   }
+
+  async getPendingPaymentJobsAmountByClient (clientId) {
+    return this.sequelizeJobModel.findAll({
+      attributes: [
+        [sequelize.fn('sum', sequelize.col('price')), 'total']
+      ],
+      where: {
+        paid: { [sequelize.Op.not]: true }
+      },
+      include: {
+        model: this.sequelizeContractModel,
+        as: 'Contract',
+        attributes: ['ClientId'],
+        where: {
+          ClientId: clientId
+        }
+      },
+      group: 'Contract.ClientId'
+    })
+  }
 }
 
 module.exports = JobData

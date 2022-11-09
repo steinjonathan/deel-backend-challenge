@@ -4,6 +4,7 @@ const { Contract, Job, Profile } = sequelize.models
 const ContractService = require('../services/contract')
 const JobService = require('../services/job')
 const AdminService = require('../services/admin')
+const BalanceService = require('../services/balance')
 
 const ContractsData = require('../data/contracts')
 const JobsData = require('../data/jobs')
@@ -37,6 +38,13 @@ module.exports = (app) => {
     app,
     adminService: new AdminService({
       jobsData: new JobsData(Job, Contract, Profile)
+    })
+  })
+  require('../routes/balance')({
+    app,
+    balanceService: new BalanceService({
+      jobsData: new JobsData(Job, Contract, Profile),
+      profilesData: new ProfilesData(Profile)
     })
   })
 }
