@@ -1,5 +1,4 @@
-const { sequelize, Transaction } = require('./model')
-const { Contract, Job, Profile } = sequelize.models
+const { sequelize, Transaction, Profile, Contract, Job } = require('./model')
 
 const ContractService = require('../services/contract')
 const JobService = require('../services/job')
@@ -9,11 +8,13 @@ const BalanceService = require('../services/balance')
 const ContractsData = require('../data/contracts')
 const JobsData = require('../data/jobs')
 const ProfilesData = require('../data/profiles')
+const ProfileService = require('../services/profile')
 
 const getRepeatableReadTransaction = async () => {
   // CONSOLE MESSAGE: SQLite is not able to choose the isolation level REPEATABLE READ.
   // Not sure if is there a way to handle transactions in SQL Lite, but I'll keep this Isolation Level
   // in order to show my concern and way of thinking. For real production database it would work.
+  // Reference: https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html
   return sequelize.transaction({
     isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ
   })
@@ -38,6 +39,9 @@ module.exports = (app) => {
     app,
     adminService: new AdminService({
       jobsData: new JobsData(Job, Contract, Profile)
+    }),
+    profileService: new ProfileService({
+      profilesData: new ProfilesData(Profile)
     })
   })
   require('../routes/balance')({
