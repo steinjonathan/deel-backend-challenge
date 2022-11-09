@@ -153,7 +153,7 @@ I could manage extra time to do the code challenge, that's why I did some fancy 
 - `data`:
     Responsible of getting and storing data via ORM interface methods.
 - `infra`:
-    Setup ORM models and connection and setup the whole application registering routes and providing instances on depency injection parameters.
+    Setup ORM models and connection and setup the whole application registering routes and providing instances on dependency injection parameters.
 - `middleware`:
     (Already exists on example) Application middleware for validate authenticated users
 - `router`:
@@ -169,13 +169,13 @@ I called e2e and not integration based on one article I follow for define type o
 
 #### 👉 Regarding code structure 
 I did some changes on the existing files that were at the example project.
-I followed two of SOLID principles that are Dependency Inversion principle and Single Responsiblity Principle. By doing this I could make each file independent of its dependencies
+I followed two of SOLID principles that are Dependency Inversion principle and Single Responsability Principle. By doing this I could make each file independent of its dependencies
 making them easily to maintain in case of a refactor and easily to test by giving test dependencies not needing to mock a lot of things.
-The dependency injestion is done at setup time in infra/index.js.
+The dependency injection is done at setup time in infra/index.js.
 
 #### 👉 Regarding database transaction and concurrency
 I used the Isolation Level Repeatable Read, queries cannot read data that has been modified but not yet committed by other transactions and that no other transactions can modify data that has been read by the current transaction until the current transaction completes.
-With this Isolation Level I lock the data read during a small period of time, not being a good thing if the data is read to much by the applcation, but as this time the consistency
+With this Isolation Level I lock the data read during a small period of time, not being a good thing if the data is read to much by the application, but as this time the consistency
 is more important to us than performance, I choose for prioritize strong consistency rather than eventual consistency.
 
 ## Future development
