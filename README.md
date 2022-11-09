@@ -176,7 +176,7 @@ I used the Isolation Level Repeatable Read, queries cannot read data that has be
 With this Isolation Level I lock the data read during a small period of time, not being a good thing if the data is read to much by the applcation, but as this time the consistency
 is more important to us than performance, I choose for prioritize strong consistency rather than eventual consistency.
 
-## Future development:
+## Future development
 1. Add custom Error classes to be thrown from services and be handled in routes. 
 1. Add json schema validation package to handle request body validation. (Case of `/balances/deposit/:userId`)
 1. Add Profile type Admin and validate them at the admin routes
