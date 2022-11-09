@@ -139,6 +139,8 @@ Thank you and good luck! 🙏
 
 # 🙋‍♂️ My Considerations
 
+I could manage extra time to do the code challenge, that's why I did some fancy things 😀 🙌
+
 ## Scripts running
 
 - To run unit tests can do `npm run test` or `npm run test:unit`
