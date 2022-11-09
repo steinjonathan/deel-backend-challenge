@@ -15,6 +15,7 @@ const getRepeatableReadTransaction = async () => {
   // Not sure if is there a way to handle transactions in SQL Lite, but I'll keep this Isolation Level
   // in order to show my concern and way of thinking. For real production database it would work.
   // Reference: https://dev.mysql.com/doc/refman/8.0/en/innodb-transaction-isolation-levels.html
+  // Other Ref: https://learn.microsoft.com/en-us/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver16
   return sequelize.transaction({
     isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ
   })
